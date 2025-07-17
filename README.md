@@ -40,6 +40,22 @@ h5p setup h5p-course-presentation
 You can use `h5p list` to see which content libraries are available and set them
 up in the same way.
 
+### Persisting libraries across runs
+
+To keep your libraries between container invocations, mount a host directory into /data:
+
+```bash
+mkdir ~/h5p-data
+docker run -it -v ~/h5p-data:/data jagalindo/h5p-cli h5p core
+```
+
+Running `h5p core` in this directory is only required the first time. Subsequent runs can reuse the same libraries:
+
+```bash
+docker run -it -v ~/h5p-data:/data jagalindo/h5p-cli h5p
+```
+
+
 ## Automation
 The workflow defined in `.github/workflows/docker-image.yml` builds the image and pushes it to Docker Hub on the first day of every month. You can also trigger the workflow manually from the GitHub Actions tab.
 
