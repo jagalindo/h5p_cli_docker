@@ -10,6 +10,7 @@ RUN mkdir -p /usr/local/lib/h5p \
     && h5p core \
     && h5p list | awk '/^h5p/ {print $1}' | xargs -n1 h5p setup
 
+
 # Set default workdir
 WORKDIR /data
 
