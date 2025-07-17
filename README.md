@@ -40,6 +40,22 @@ h5p setup h5p-course-presentation
 You can use `h5p list` to see which content libraries are available and set them
 up in the same way.
 
+## Pre-installed libraries
+All libraries fetched during the image build are stored in `/usr/local/lib/h5p` inside the container. When mounting a directory for your project, you can copy or symlink these libraries so the `h5p` command can use them immediately.
+
+To copy the libraries into a mounted directory:
+
+```bash
+docker run --rm -v $(pwd)/my_h5p_data:/data jagalindo/h5p-cli bash -c 'cp -r /usr/local/lib/h5p/* /data/'
+```
+
+Or create symbolic links instead:
+
+```bash
+docker run --rm -v $(pwd)/my_h5p_data:/data jagalindo/h5p-cli bash -c 'for d in /usr/local/lib/h5p/*; do ln -s "$d" /data/; done'
+```
+
+
 ## Automation
 The workflow defined in `.github/workflows/docker-image.yml` builds the image and pushes it to Docker Hub on the first day of every month. You can also trigger the workflow manually from the GitHub Actions tab.
 
