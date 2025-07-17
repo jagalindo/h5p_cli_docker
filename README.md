@@ -40,6 +40,21 @@ h5p setup h5p-course-presentation
 You can use `h5p list` to see which content libraries are available and set them
 up in the same way.
 
+### Persisting libraries across runs
+
+To keep your libraries between container invocations, mount a host directory into /data:
+
+```bash
+mkdir ~/h5p-data
+docker run -it -v ~/h5p-data:/data jagalindo/h5p-cli h5p core
+```
+
+Running `h5p core` in this directory is only required the first time. Subsequent runs can reuse the same libraries:
+
+```bash
+docker run -it -v ~/h5p-data:/data jagalindo/h5p-cli h5p
+
+
 ## Pre-installed libraries
 All libraries fetched during the image build are stored in `/usr/local/lib/h5p` inside the container. When mounting a directory for your project, you can copy or symlink these libraries so the `h5p` command can use them immediately.
 
