@@ -19,7 +19,7 @@ docker pull <your_dockerhub_username>/h5p-cli:latest
 Run the container:
 
 ```bash
-docker run -it h5p-cli h5p --help
+docker run -it jagalindo/h5p-cli h5p
 ```
 
 All available H5P libraries are downloaded during the Docker build and the
