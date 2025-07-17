@@ -22,9 +22,8 @@ Run the container:
 docker run -it h5p-cli h5p --help
 ```
 
-All available H5P libraries are downloaded during the Docker build. This means
-commands like `h5p setup h5p-course-presentation` work offline because the
-libraries and their dependencies are already stored inside the image.
+All available H5P libraries are downloaded when the image is built. This allows
+you to run `h5p setup <library>` later without an internet connection.
 
 ### Example workflow
 
