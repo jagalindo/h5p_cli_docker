@@ -22,8 +22,11 @@ Run the container:
 docker run -it h5p-cli h5p --help
 ```
 
-All available H5P libraries are downloaded when the image is built. This allows
-you to run `h5p setup <library>` later without an internet connection.
+All available H5P libraries are downloaded during the Docker build and the
+`h5p-course-presentation` library is set up ahead of time. This means commands
+like `h5p setup h5p-course-presentation` simply copy the local files instead of
+downloading anything.
+
 
 ### Example workflow
 
@@ -38,5 +41,5 @@ You can use `h5p list` to see which content libraries are available and set them
 up in the same way.
 
 ## Automation
-
 The workflow defined in `.github/workflows/docker-image.yml` builds the image and pushes it to Docker Hub on the first day of every month. You can also trigger the workflow manually from the GitHub Actions tab.
+

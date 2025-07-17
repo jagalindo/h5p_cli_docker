@@ -11,7 +11,9 @@ RUN npm install -g h5p-cli \
 RUN mkdir -p /usr/local/lib/h5p \
     && cd /usr/local/lib/h5p \
     && h5p core --yes \
-    && h5p list | awk '/^h5p/ {print $1}' | xargs -n1 -I{} h5p setup {} --yes
+    && h5p list | awk '/^h5p/ {print $1}' | \
+        xargs -I{} sh -c 'h5p setup "$1" --yes || h5p setup "$1" master --yes || h5p setup "$1" main --yes' _ {}
+
 
 # Set default workdir
 WORKDIR /data
