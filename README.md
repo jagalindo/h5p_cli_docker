@@ -53,6 +53,21 @@ Running `h5p core` in this directory is only required the first time. Subsequent
 
 ```bash
 docker run -it -v ~/h5p-data:/data jagalindo/h5p-cli h5p
+
+
+## Pre-installed libraries
+All libraries fetched during the image build are stored in `/usr/local/lib/h5p` inside the container. When mounting a directory for your project, you can copy or symlink these libraries so the `h5p` command can use them immediately.
+
+To copy the libraries into a mounted directory:
+
+```bash
+docker run --rm -v $(pwd)/my_h5p_data:/data jagalindo/h5p-cli bash -c 'cp -r /usr/local/lib/h5p/* /data/'
+```
+
+Or create symbolic links instead:
+
+```bash
+docker run --rm -v $(pwd)/my_h5p_data:/data jagalindo/h5p-cli bash -c 'for d in /usr/local/lib/h5p/*; do ln -s "$d" /data/; done'
 ```
 
 
