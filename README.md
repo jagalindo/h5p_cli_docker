@@ -40,4 +40,3 @@ up in the same way.
 ## Automation
 
 The workflow defined in `.github/workflows/docker-image.yml` builds the image and pushes it to Docker Hub on the first day of every month. You can also trigger the workflow manually from the GitHub Actions tab.
-
