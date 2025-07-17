@@ -14,6 +14,7 @@ RUN mkdir -p /usr/local/lib/h5p \
     && h5p list | awk '/^h5p/ {print $1}' | \
         xargs -I{} sh -c 'h5p setup "$1" --yes || h5p setup "$1" master --yes || h5p setup "$1" main --yes' _ {}
 
+
 # Set default workdir
 WORKDIR /data
 
